@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       properties: [
-        { title: "Type", text: "Human", icon: "/images/icons/human.png" },
+        { title: "Type", text: "Human", icon: "/src/assets/icons/human.png" },
         {
           title: "Special",
           text: "Butterfly",

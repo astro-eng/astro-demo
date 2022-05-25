@@ -1,10 +1,10 @@
 <template>
   <div class="order">
-    <div class="mb-20">
-      <OrderOptions @select="(o) => (orderType = o)" />
-    </div>
     <div class="container mx-auto p-[10px] md:p-[0px]">
       <template v-if="!isSubmitted">
+        <div class="mb-20">
+          <OrderOptions @select="(o) => (orderType = o)" />
+        </div>
         <Heading1 class="mt-[100px]">Ask a question</Heading1>
         <Heading4 class="mt-[40px]">Select a question</Heading4>
         <div class="flex flex-wrap mt-[10px]">
@@ -54,7 +54,7 @@
         </div>
         <div class="mt-[50px]">
           <div class="text-tran">Recorded Video • 5 minutes • $9.99</div>
-          <ButtonPrimary class="mt-[20px]" @click="order">
+          <ButtonPrimary class="mt-[20px]" @click="handleSubmit">
             Order my personalized video
           </ButtonPrimary>
         </div>
@@ -86,17 +86,17 @@
         </div>
       </template>
       <template v-else>
-        <div class="flex flex-col justify-items-center items-center">
-          <h1 class="yay mt-[150px]">Yay!!!</h1>
+        <div class="flex flex-col justify-items-center items-center mb-30">
+          <h1 class="yay">Yay!!!</h1>
           <Heading2 class="mt-[40px]">Your order has been confirmed</Heading2>
           <div class="icon-done flex justify-center items-center">
             <div class="background w-full h-full absolute top-0 left-0"></div>
-            <img src="/images/check.png" alt="" />
+            <img src="/src/assets/icons/check.png" alt="" />
           </div>
           <div class="text-center des-2">
             <div>A copy of this transaction has been emailed to you.</div>
             <div class="mt-[15px] font-bold">
-              Your video will be sent within 24 hours.
+              Your video will be sent within 48 hours.
             </div>
             <div class="mt-[15px]">
               If you have any questions, please email us at hello@coiboi.io
@@ -127,8 +127,7 @@ export default {
     };
   },
   methods: {
-    order() {
-      alert(this.orderType);
+    handleSubmit() {
       this.isSubmitted = true;
     },
   },
