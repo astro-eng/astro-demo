@@ -23,10 +23,10 @@
         <div class="card">
           <div class="card-title">
             <div class="mini-box mr-[10px]">
-              <img src="/src/assets/nftz/sign-1.png" alt="" />
+              <img src="/nftz/sign-1.png" alt="" />
             </div>
             <div class="mini-box mr-[20px]">
-              <img src="/src/assets/nftz/sign-2.png" alt="" />
+              <img src="/nftz/sign-2.png" alt="" />
             </div>
             {{ threeWords[0] }}, {{ threeWords[1] }}, and
             {{ threeWords[2] }}
@@ -64,7 +64,10 @@
               totam rem aperiam, eaque ipsa quae ab illo inventore.
             </p>
           </div>
-          <Button class="px-[18px] py-[8px] mt-[30px] uppercase">
+          <Button
+            @click="$router.push('/my-nft')"
+            class="px-[18px] py-[8px] mt-[30px] uppercase"
+          >
             Mint the
             {{ archetypeMapping[dataNFTZSign.architype.name] }}
             {{ dataFateMap.yearSign }}
@@ -190,43 +193,43 @@ export default {
           title: "Energy",
           attributeLabels: "",
           content: "",
-          image: "/src/assets/nftz/energy.png",
+          image: "/nftz/energy.png",
         },
         {
           title: "Mind",
           attributeLabels: "",
           content: "",
-          image: "/src/assets/nftz/mind.png",
+          image: "/nftz/mind.png",
         },
         {
           title: "Tactics",
           attributeLabels: "",
           content: "",
-          image: "/src/assets/nftz/tactics.png",
+          image: "/nftz/tactics.png",
         },
         {
           title: "Style",
           attributeLabels: "",
           content: "",
-          image: "/src/assets/nftz/style.png",
+          image: "/nftz/style.png",
         },
         {
           title: "Love",
           attributeLabels: "",
           content: "",
-          image: "/src/assets/nftz/love.png",
+          image: "/nftz/love.png",
         },
         {
           title: "Dreams",
           attributeLabels: "",
           content: "",
-          image: "/src/assets/nftz/dreams.png",
+          image: "/nftz/dreams.png",
         },
         {
           title: "Outlook",
           attributeLabels: "",
           content: "",
-          image: "/src/assets/nftz/outlook.png",
+          image: "/nftz/outlook.png",
         },
       ];
 

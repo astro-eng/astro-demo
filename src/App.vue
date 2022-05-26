@@ -1,8 +1,11 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "@/components/HelloWorld.vue";
 import Header from "@/components/Header.vue";
 import FooterMini from "@/components/FooterMini.vue";
+
+export default {
+  components: { RouterLink, Header, RouterView, FooterMini },
+};
 </script>
 
 <template>

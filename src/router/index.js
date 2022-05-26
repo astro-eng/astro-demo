@@ -26,7 +26,7 @@ const router = createRouter({
       component: () => import('../views/MyNFTView.vue'),
     },
     {
-      path: '/my-nft/:nftPublicKey',
+      path: '/my-nft/:token',
       name: 'nft-detail',
       component: () => import('../views/NFTDetailView.vue'),
     },

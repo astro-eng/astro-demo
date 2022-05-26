@@ -61,11 +61,7 @@
         <Heading1 class="mt-[150px]">Example</Heading1>
         <div class="grid grid-cols-1 md:grid-cols-2 mt-[50px] mb-[200px]">
           <div class="video-demo mr-[0px] md:mr-[10px] cursor-pointer">
-            <img
-              src="/src/assets/nft/video-banner-1.png "
-              class="bg-cover"
-              alt=""
-            />
+            <img src="/nft/video-banner-1.png " class="bg-cover" alt="" />
           </div>
           <div
             class="
@@ -77,11 +73,7 @@
               cursor-pointer
             "
           >
-            <img
-              src="/src/assets/nft/video-banner-2.png "
-              class="bg-cover"
-              alt=""
-            />
+            <img src="/nft/video-banner-2.png " class="bg-cover" alt="" />
           </div>
         </div>
       </template>
@@ -91,7 +83,7 @@
           <Heading2 class="mt-[40px]">Your order has been confirmed</Heading2>
           <div class="icon-done flex justify-center items-center">
             <div class="background w-full h-full absolute top-0 left-0"></div>
-            <img src="/src/assets/icons/check.png" alt="" />
+            <img src="/icons/check.png" alt="" />
           </div>
           <div class="text-center des-2">
             <div>A copy of this transaction has been emailed to you.</div>

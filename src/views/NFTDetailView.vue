@@ -3,6 +3,7 @@ import { RouterLink } from "vue-router";
 import NFTOverview from "@/components/NFTOverview.vue";
 import NFTReading from "@/components/NFTReading.vue";
 import VideoOrder from "@/components/VideoOrder.vue";
+import { useWallet } from "@/stores/wallet";
 export default {
   components: { RouterLink, NFTOverview, NFTReading, VideoOrder },
   data() {
@@ -11,6 +12,25 @@ export default {
     };
   },
   methods: {},
+  setup() {
+    const wallet = useWallet();
+
+    return { wallet };
+  },
+  computed: {
+    nftInfo() {
+      const { token } = this.$route.params;
+
+      if (!token) {
+        return null;
+      }
+
+      const existObj = this.wallet.tokens.find((o) => o.mint === token);
+      console.log('🚀 ~ file: NFTDetailView.vue ~ line 29 ~ nftInfo ~ existObj', existObj)
+
+      return existObj;
+    },
+  },
 };
 </script>
 
@@ -105,9 +125,12 @@ export default {
         </div>
       </div>
       <div class="pt-14 lg:pt-20 w-full">
-        <NFTOverview v-if="currentTab === 'overview'" />
-        <NFTReading v-if="currentTab === 'card-reading'" />
-        <VideoOrder v-if="currentTab === 'order'" />
+        <div v-if="!!nftInfo">
+          <NFTOverview v-if="currentTab === 'overview'" :data="nftInfo.data" />
+          <NFTReading v-if="currentTab === 'card-reading'" />
+          <VideoOrder v-if="currentTab === 'order'" />
+        </div>
+        <div v-else>No data found.</div>
       </div>
     </div>
   </div>

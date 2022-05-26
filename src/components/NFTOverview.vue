@@ -1,22 +1,33 @@
 <template>
   <div class="mb-[180px] lg:mb-[256px]">
     <heading2 class="max-w-[215px] mb-7.5">Overview</heading2>
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap items-center">
       <div
         class="
           flex-shrink-0
           w-[400px]
           h-[400px]
-          bg-center bg-cover bg-no-repeat
+          bg-center bg-contain bg-no-repeat
           rounded-xl
           mr-7.5
           mb-10
         "
-        :style="`background-image: url(${imageUrl})`"
+        :style="`background-image: url(${data.image})`"
       ></div>
       <div class="flex-auto">
-        <heading4>Astroverse Gen 1</heading4>
-        <heading1 class="text-gradient mb-7.5 inline-block">#3651</heading1>
+        <div class="mb-7.5">
+          <heading1 class="mb-2.5">{{ data.name }}</heading1>
+          <heading4 class="text-gradient inline-block mb-2.5">{{
+            data.description
+          }}</heading4>
+          <a
+            v-if="!!data.external_url"
+            :href="data.external_url"
+            target="_blank"
+            class="block hover:underline"
+            >{{ data.external_url }}</a
+          >
+        </div>
         <div class="grid gap-4 grid-cols-1 sm:grid-cols-3 mb-20">
           <div
             v-for="item in properties"
@@ -52,43 +63,46 @@
 import { RouterLink } from "vue-router";
 export default {
   components: { RouterLink },
+  props: {
+    data: Object,
+  },
   data() {
     return {
       properties: [
-        { title: "Type", text: "Human", icon: "/src/assets/icons/human.png" },
+        { title: "Type", text: "Human", icon: "/icons/human.png" },
         {
           title: "Special",
           text: "Butterfly",
-          icon: "/src/assets/icons/special.png",
+          icon: "/icons/special.png",
         },
         {
           title: "Background",
           text: "Blue",
-          icon: "/src/assets/icons/background.png",
+          icon: "/icons/background.png",
         },
         {
           title: "Headgear",
           text: "None",
-          icon: "/src/assets/icons/headgear.png",
+          icon: "/icons/headgear.png",
         },
         {
           title: "Outfit",
           text: "Water",
-          icon: "/src/assets/icons/outfit2.png",
+          icon: "/icons/outfit2.png",
         },
-        { title: "Hand", text: "Weapon", icon: "/src/assets/icons/hand.png" },
-        { title: "Eyes", text: "Blue", icon: "/src/assets/icons/eyes.png" },
-        { title: "Ears", text: "None", icon: "/src/assets/icons/ears.png" },
-        { title: "Mouth", text: "Happy", icon: "/src/assets/icons/mouth.png" },
+        { title: "Hand", text: "Weapon", icon: "/icons/hand.png" },
+        { title: "Eyes", text: "Blue", icon: "/icons/eyes.png" },
+        { title: "Ears", text: "None", icon: "/icons/ears.png" },
+        { title: "Mouth", text: "Happy", icon: "/icons/mouth.png" },
         {
           title: "Hair",
           text: "Dreads Shaved",
-          icon: "/src/assets/icons/hair.png",
+          icon: "/icons/hair.png",
         },
-        { title: "Neck", text: "Tattoo", icon: "/src/assets/icons/neck.png" },
-        { title: "Face", text: "None", icon: "/src/assets/icons/face.png" },
+        { title: "Neck", text: "Tattoo", icon: "/icons/neck.png" },
+        { title: "Face", text: "None", icon: "/icons/face.png" },
       ],
-      imageUrl: "/src/assets/nft/nft1.jpg",
+      imageUrl: "/nft/nft1.jpg",
     };
   },
   methods: {},

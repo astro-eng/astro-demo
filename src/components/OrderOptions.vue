@@ -110,7 +110,7 @@ export default {
           ],
           priceText: "Recorded Video • 2 minutes • $8.88",
           buttonText: "SELECT 2-min video",
-          icon: "/src/assets/icons/screen.png",
+          icon: "/icons/screen.png",
           isRecommended: false,
         },
         {
@@ -122,7 +122,7 @@ export default {
           ],
           priceText: "Recorded Video • 5 minutes • $18.88",
           buttonText: "SELECTED 5-MIN VIDEO",
-          icon: "/src/assets/icons/camera.png",
+          icon: "/icons/camera.png",
           isRecommended: true,
         },
         {
@@ -134,7 +134,7 @@ export default {
           ],
           priceText: "Online Meeting • 30 minutes • $88.88",
           buttonText: "SELECT consultation",
-          icon: "/src/assets/icons/message.png",
+          icon: "/icons/message.png",
           isRecommended: false,
         },
       ],

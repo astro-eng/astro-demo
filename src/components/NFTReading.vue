@@ -28,7 +28,7 @@
             flex
             justify-center
             items-center
-            bg-cover bg-center bg-no-repeat bg-[url('/src/assets/nft/back.png')]
+            bg-cover bg-center bg-no-repeat bg-[url('/nft/back.png')]
             h-[358px]
           "
         >
@@ -48,21 +48,21 @@ export default {
         {
           title: "First position",
           description: "You got the Green Dragon Card",
-          image: "/src/assets/nft/card1.png",
+          image: "/nft/card1.png",
           reveal: false,
           id: 1,
         },
         {
           title: "Center position",
           description: "You got the White Dragon Card",
-          image: "/src/assets/nft/card2.png",
+          image: "/nft/card2.png",
           reveal: false,
           id: 2,
         },
         {
           title: "Last position",
           description: "You got the Red Dragon Card",
-          image: "/src/assets/nft/card3.png",
+          image: "/nft/card3.png",
           reveal: false,
           id: 3,
         },
