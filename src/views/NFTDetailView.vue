@@ -126,7 +126,7 @@ export default {
       </div>
       <div class="pt-14 lg:pt-20 w-full">
         <div v-if="!!nftInfo">
-          <NFTOverview v-if="currentTab === 'overview'" :data="nftInfo.data" />
+          <NFTOverview v-if="currentTab === 'overview'" :data="nftInfo.parsedMetaData" />
           <NFTReading v-if="currentTab === 'card-reading'" />
           <VideoOrder v-if="currentTab === 'order'" />
         </div>

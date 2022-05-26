@@ -11,6 +11,7 @@ export const useWallet = defineStore('wallet', {
       publicKey: '',
       provider: null,
       tokens: [],
+      loadingNFT: false,
     };
   },
   actions: {
@@ -29,6 +30,7 @@ export const useWallet = defineStore('wallet', {
         if (!this.publicKey) {
           this.publicKey = publicKey;
           this.connected = true;
+          this.loadingNFT = true;
           this.getTokens();
         }
         console.log('Connected wallet!');
@@ -37,6 +39,7 @@ export const useWallet = defineStore('wallet', {
         this.publicKey = null;
         this.connected = false;
         this.tokens = [];
+        this.loadingNFT = false;
         console.log('Disconnected wallet!');
       });
       this.provider.on('accountChanged', (publicKey) => {
@@ -77,24 +80,23 @@ export const useWallet = defineStore('wallet', {
           mpConnection,
           this.publicKey
         );
-        console.log(
-          '🚀 ~ file: wallet.js ~ line 80 ~ getTokens ~ ownedMetadata',
-          ownedMetadata
-        );
 
         const tokens = [];
 
         for (let index = 0; index < ownedMetadata.length; index++) {
           const metadataUrl = ownedMetadata[index].data.uri;
           const { data } = await axios.get(metadataUrl);
-          tokens.push({ metadataUrl, data, mint: ownedMetadata[index].mint });
+          tokens.push({
+            ...ownedMetadata[index],
+            parsedMetaData: data,
+          });
         }
 
-        this.tokens = tokens;
-        console.log(
-          '🚀 ~ file: wallet.js ~ line 90 ~ getTokens ~ this.tokens',
-          tokens
-        );
+        if (this.publicKey) {
+          this.tokens = tokens;
+          console.log('Tokens', tokens);
+          this.loadingNFT = false;
+        }
       } catch (err) {
         console.warn('[error] getTokens: ' + JSON.stringify(err));
       }
