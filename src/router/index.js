@@ -30,6 +30,11 @@ const router = createRouter({
       name: 'nft-detail',
       component: () => import('../views/NFTDetailView.vue'),
     },
+    {
+      path: '/reading/:guid',
+      name: 'zodiac-reading',
+      component: () => import('../views/ZodiacReadingView.vue'),
+    },
   ],
 });
 

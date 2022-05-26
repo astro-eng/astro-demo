@@ -1,11 +1,12 @@
 <template>
-  <form class="" @submit.prevent="submitSettings">
+  <form class="" @submit.prevent="submit">
     <div class="flex flex-wrap">
       <div>
         <Heading4 class="mb-[10px]">First name</Heading4>
         <input
           v-model="formData.firstName"
           placeholder=""
+          name="first_name"
           class="
             border-none
             !outline-none
@@ -24,6 +25,7 @@
         <input
           v-model="formData.lastName"
           placeholder=""
+          name="last_name"
           class="
             border-none
             !outline-none
@@ -44,6 +46,7 @@
       >
       <select
         v-model="formData.gender"
+        name="gender"
         class="
           border-none
           !outline-none
@@ -67,6 +70,7 @@
           <Heading4 class="mb-[10px]">Date of Birth</Heading4>
           <input
             v-model="formData.birthday"
+            name="birthday"
             class="
               border-none
               !outline-none
@@ -87,6 +91,7 @@
           >
           <input
             v-model="formData.birthTime"
+            name="birthTime"
             class="
               border-none
               !outline-none
@@ -103,20 +108,25 @@
         </div>
       </div>
     </div>
-    <div class="mt-[100px]">
-      <button
-        @click="submitSettings"
-        class="button"
+    <div class="mt-24">
+      <div v-if="showError" class="text-red mb-4">
+        Please enter your information.
+      </div>
+      <ButtonPrimary
+        class="w-[150px]"
         :class="loading ? 'cursor-not-allowed' : ''"
         :disabled="loading"
+        type="submit"
       >
         Submit
-      </button>
+      </ButtonPrimary>
     </div>
   </form>
 </template>
 
 <script>
+import serviceFateMap from "@/api/fate-map";
+
 export default {
   data() {
     return {
@@ -127,8 +137,66 @@ export default {
         birthday: null,
         gender: null,
       },
+      gender: [
+        { key: 1, label: "Male" },
+        { key: 2, label: "Female" },
+      ],
       loading: false,
+      showError: false,
     };
+  },
+  methods: {
+    async submit() {
+      if (this.loading) {
+        return false;
+      }
+
+      if (
+        !this.formData.firstName ||
+        !this.formData.birthday ||
+        !this.formData.birthTime
+      ) {
+        this.showError = true;
+        return false;
+      } else {
+        this.showError = false;
+      }
+
+      const response = await serviceFateMap.submitName({
+        name: this.formData.firstName,
+      });
+
+      const guid = response.data.guid;
+      // submit date
+      await serviceFateMap.submitDate(guid, {
+        birthDate: this.formData.birthday,
+      });
+
+      let birthHour = 12;
+      let birthMinute = 0;
+
+      if (this.formData.birthTime) {
+        const arr = this.formData.birthTime.split(":");
+        birthHour = parseInt(arr[0]);
+        birthMinute = parseInt(arr[1]);
+      }
+
+      await serviceFateMap.submitHour(guid, { birthHour, birthMinute });
+
+      await serviceFateMap.submitNFTZSign(guid, {
+        energy: 0,
+        mind: 0,
+        tactics: 0,
+        style: 0,
+        romance: 0,
+        dreams: 0,
+        outlook: 0,
+        gender: this.formData.gender || 3,
+        three_words: "",
+      });
+
+      this.$router.push(`/reading/${guid}`);
+    },
   },
 };
 </script>
@@ -152,20 +220,7 @@ export default {
 }
 input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {
-  color: #fff
-}
-.button {
-  width: 166px;
-  height: 40px;
-  background: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-radius: 5px;
-  font-family: "Raleway";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
-  color: #000000;
+  color: #fff;
 }
 </style>
 

@@ -36,7 +36,7 @@
       <div></div>
       <div class="flex flex-row items-center gap-5">
         <RouterLink to="/my-nft" class="mr-10"
-          ><span class="font-bold text-raleway">My Nft</span></RouterLink
+          ><span class="font-bold text-raleway">My NFT</span></RouterLink
         >
         <ButtonPrimary @click="connectWallet">CONNECT WALLET</ButtonPrimary>
       </div>

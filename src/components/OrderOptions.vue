@@ -132,7 +132,7 @@ export default {
             "Do you have a burning question and need help from an Astrologer? The Firepig has helped over 50,000 people over the last 30 years.  ",
             "You can now get a personalized video recorded for you for only $9.99",
           ],
-          priceText: "Online Meeting • 30 minutes • $48.88",
+          priceText: "Online Meeting • 30 minutes • $88.88",
           buttonText: "SELECT consultation",
           icon: "/src/assets/icons/message.png",
           isRecommended: false,
