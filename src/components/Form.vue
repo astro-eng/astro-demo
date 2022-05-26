@@ -147,10 +147,6 @@ export default {
   },
   methods: {
     async submit() {
-      if (this.loading) {
-        return false;
-      }
-
       if (
         !this.formData.firstName ||
         !this.formData.birthday ||
@@ -161,6 +157,9 @@ export default {
       } else {
         this.showError = false;
       }
+
+      this.$router.push("/my-nft");
+      return;
 
       const response = await serviceFateMap.submitName({
         name: this.formData.firstName,
