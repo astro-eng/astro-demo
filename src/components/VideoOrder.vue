@@ -53,7 +53,7 @@
           </div>
         </div>
         <div class="mt-[50px]">
-          <div class="text-tran">Recorded Video • 5 minutes • $9.99</div>
+          <div class="text-tran">Recorded Video • 5 minutes • $18.88</div>
           <ButtonPrimary class="mt-[20px]" @click="handleSubmit">
             Order my personalized video
           </ButtonPrimary>

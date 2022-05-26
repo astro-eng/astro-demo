@@ -106,7 +106,7 @@ export default {
           title: "2-minute Video",
           desc: [
             "Do you have a burning question and need help from an Astrologer? The Firepig has helped over 50,000 people over the last 30 years.  ",
-            "You can now get a personalized video recorded for you for only $9.99",
+            "You can now get a personalized video recorded for you for only $8.88",
           ],
           priceText: "Recorded Video • 2 minutes • $8.88",
           buttonText: "SELECT 2-min video",
@@ -118,7 +118,7 @@ export default {
           title: "5-minute Video",
           desc: [
             "Do you have a burning question and need help from an Astrologer? The Firepig has helped over 50,000 people over the last 30 years.  ",
-            "You can now get a personalized video recorded for you for only $9.99",
+            "You can now get a personalized video recorded for you for only $8.88",
           ],
           priceText: "Recorded Video • 5 minutes • $18.88",
           buttonText: "SELECTED 5-MIN VIDEO",
@@ -130,7 +130,7 @@ export default {
           title: "Live Consultation",
           desc: [
             "Do you have a burning question and need help from an Astrologer? The Firepig has helped over 50,000 people over the last 30 years.  ",
-            "You can now get a personalized video recorded for you for only $9.99",
+            "You can now get a personalized video recorded for you for only $8.88",
           ],
           priceText: "Online Meeting • 30 minutes • $88.88",
           buttonText: "SELECT consultation",
