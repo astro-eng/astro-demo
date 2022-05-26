@@ -160,41 +160,6 @@ export default {
 
       this.$router.push("/my-nft");
       return;
-
-      const response = await serviceFateMap.submitName({
-        name: this.formData.firstName,
-      });
-
-      const guid = response.data.guid;
-      // submit date
-      await serviceFateMap.submitDate(guid, {
-        birthDate: this.formData.birthday,
-      });
-
-      let birthHour = 12;
-      let birthMinute = 0;
-
-      if (this.formData.birthTime) {
-        const arr = this.formData.birthTime.split(":");
-        birthHour = parseInt(arr[0]);
-        birthMinute = parseInt(arr[1]);
-      }
-
-      await serviceFateMap.submitHour(guid, { birthHour, birthMinute });
-
-      await serviceFateMap.submitNFTZSign(guid, {
-        energy: 0,
-        mind: 0,
-        tactics: 0,
-        style: 0,
-        romance: 0,
-        dreams: 0,
-        outlook: 0,
-        gender: this.formData.gender || 3,
-        three_words: "",
-      });
-
-      this.$router.push(`/reading/${guid}`);
     },
   },
 };
