@@ -76,6 +76,7 @@ export default {
   data() {
     return {
       properties: [
+        { title: "Zodiac mask", text: "Rabbit", icon: "/nftz/sign-1.png" },
         { title: "Type", text: "Human", icon: "/icons/human.png" },
         {
           title: "Element",
@@ -99,7 +100,7 @@ export default {
         },
         { title: "Hand (East)", text: "Katana", icon: "/icons/hand.png" },
         { title: "Eyes", text: "Blue striking", icon: "/icons/eyes.png" },
-        { title: "Ears", text: "None", icon: "/icons/ears.png" },
+        { title: "Gender", text: "Girl", icon: "/nftz/sign-2.png" },
         { title: "Mouth", text: "Calm", icon: "/icons/mouth.png" },
         {
           title: "Hair",
