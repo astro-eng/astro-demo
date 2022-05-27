@@ -92,10 +92,13 @@
         }}</span>
       </div>
       <ButtonPrimary
-        :disabled="!flipAll || showingCard === 3"
+        :disabled="!flipAll"
         @click="handleShowNextCard"
+        class="uppercase"
       >
-        <span>NEXT CARD MEANINGS</span>
+        <span>{{
+          showingCard === 3 ? "Meet your Astrologer" : "Next Card"
+        }}</span>
         <svg
           width="24"
           height="24"
@@ -174,8 +177,11 @@ export default {
     handleShowNextCard() {
       if (this.showingCard < 3) {
         this.showingCard += 1;
-        this.$emit("scrollTop");
+      } else {
+        this.$emit("showOrder");
       }
+
+      this.$emit("scrollTop");
     },
   },
 };

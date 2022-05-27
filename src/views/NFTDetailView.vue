@@ -197,6 +197,7 @@ export default {
         <NFTReading
           v-show="currentTab === 'card-reading'"
           @show-zodiac="currentTab = 'zodiac'"
+          @show-order="currentTab = 'order'"
           @scroll-top="scrollToTop"
         />
         <VideoOrder v-show="currentTab === 'order'" @scroll-top="scrollToTop" />
