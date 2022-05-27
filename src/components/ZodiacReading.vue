@@ -43,9 +43,11 @@
             they want, or just living comfortably without worries.
           </p>
           <p class="mb-5">
-            The Metal Rabbit values freedom over all. You love to see your
-            friends and family having the job they love, going to the school
-            they want, or just living comfortably without worries.
+            While you plan and ponder on how you can make everyone’s life
+            easier, just don’t forget about your own freedom. Remember, saying
+            “no” does not make you insensitive. Rabbits don’t bite. But they,
+            too, need the peace and quiet that they’ve worked so hard to give
+            everyone else.
           </p>
         </div>
         <div class="flex items-center justify-between">
