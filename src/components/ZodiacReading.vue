@@ -58,6 +58,7 @@
               text-sm
               font-bold font-raleway
               cursor-pointer
+              hover:underline
             "
             @click="$emit('showOverview')"
           >

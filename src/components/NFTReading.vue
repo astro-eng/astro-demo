@@ -3,9 +3,13 @@
     <div class="mb-[100px]">
       <heading2 class="mb-7.5">Card Reading</heading2>
       <div class="opacity-60">
-        Your reading was created by master astrologer Bill Hajdu. He's performed
+        {{
+          cardContent
+            ? cardContent.description
+            : `Your reading was created by master astrologer Bill Hajdu. He's performed
         thousands of card readings over the past 30 years. This reading contains
-        three positions.
+        three positions.`
+        }}
       </div>
     </div>
     <div v-if="!cardContent" class="flex justify-center flex-wrap mb-10">
@@ -65,6 +69,8 @@
           text-sm
           font-bold font-raleway
           cursor-pointer
+          uppercase
+          hover:underline
         "
         @click="
           showingCard > 0
@@ -88,7 +94,7 @@
           />
         </svg>
         <span>{{
-          showingCard === 0 ? "ZODIAC READING" : "PREVIOUS CARD READING"
+          showingCard === 0 ? "ZODIAC READING" : "Previous Card"
         }}</span>
       </div>
       <ButtonPrimary
@@ -124,7 +130,7 @@ export default {
           position: "The East",
           title: "The Sword in the East (Personality)",
           description:
-            "The East position represents yourself often times revealing your inner secrets.",
+            "The first card represents the East and in Mah-Jong the East is all about your inner self.  It often times reveals secrets about you.",
           content: [
             "The Sword indicates you have a hard choice to make. So it could be you find yourself being indecisive of late.",
             "Have you ever tried lifting a real sword? It’s freakin’ heavy. The Sword is here to remind you that the hardest part about making a decision is facing the fact that you have to make it.",
@@ -138,7 +144,7 @@ export default {
           position: "The Center",
           title: "Ducks are in your Center (Burning Question)",
           description:
-            "Sentry card represents the central theme of your reading.",
+            "The second card represents a central theme of your reading this is incredibly important card.",
           content: [
             "These ducks are a couple. They’re in it together for life. The question you’ve been asking yourself have to do with a partner, in love or at work. It seems like one of you want to commit. If you’ve met someone new, or have started a partnership in business, the Ducks suggest your duo will endure. Like the Samurai, this partnership is built on unwavering trust and loyalty.",
             "Or, maybe these ducks are besties. A long-lost friend might have gotten in touch again, and you’re wondering whether you should renew the bond, or to keep a friendly distance. It’s your call. The Ducks seem to be quacking for a night out and drinks at the bar.",
@@ -150,7 +156,8 @@ export default {
         {
           position: "The North",
           title: "Water is in your North (Longterm Resolution)",
-          description: "The north position represent your long-term future.",
+          description:
+            "The final card is the North position which represents the most likely long-term outcome.",
           content: [
             "Water represents communication, short travel, and healing. What do all these things have in common? They all require back and forth. Good flow.",
             "You got great flow, because Water loves being in the North, the upper position, from where it can rush down, powering everything on its way. If there are things that need communicating, you will be able to make them crystal clear, while also impressing others with your ability to keep the conversation moving productively.",
