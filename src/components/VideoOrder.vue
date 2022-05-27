@@ -2,12 +2,21 @@
   <div class="order">
     <div class="container mx-auto p-[10px] md:p-[0px]">
       <template v-if="!isSubmitted">
+        <div class="mb-[100px]">
+          <heading2 class="mb-7.5">Get a Personalized Interpretation</heading2>
+          <div class="opacity-50">
+            Want to know more? We have three great options for you to get
+            personalized consultation from our master astrologer
+          </div>
+        </div>
         <div class="mb-20">
           <OrderOptions @select="isSubmitted = true" />
         </div>
       </template>
       <template v-else>
-        <div class="flex flex-col justify-items-center items-center mb-30 pt-10">
+        <div
+          class="flex flex-col justify-items-center items-center mb-30 pt-10"
+        >
           <h1 class="yay">Yay!!!</h1>
           <Heading2 class="mt-[40px]">Your order has been confirmed</Heading2>
           <div class="icon-done flex justify-center items-center">
@@ -50,6 +59,7 @@ export default {
   methods: {
     handleSubmit() {
       this.isSubmitted = true;
+      this.$emit("scrollTop");
     },
   },
 };

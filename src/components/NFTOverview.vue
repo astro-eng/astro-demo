@@ -46,8 +46,8 @@
           </div>
         </div>
         <div class="flex justify-end">
-          <ButtonPrimary class="text-sm" @click="$emit('cardReading')">
-            <span>CARD READING</span>
+          <ButtonPrimary class="text-sm" @click="$emit('showZodiac')">
+            <span>ZODIAC READING</span>
             <svg
               width="24"
               height="24"
@@ -78,13 +78,13 @@ export default {
       properties: [
         { title: "Type", text: "Human", icon: "/icons/human.png" },
         {
-          title: "Special",
-          text: "Butterfly",
+          title: "Element",
+          text: "Metal",
           icon: "/icons/special.png",
         },
         {
           title: "Background",
-          text: "Blue",
+          text: "Red Dragon",
           icon: "/icons/background.png",
         },
         {
@@ -93,21 +93,21 @@ export default {
           icon: "/icons/headgear.png",
         },
         {
-          title: "Outfit",
-          text: "Water",
+          title: "Clothes (Central)",
+          text: "Samurai",
           icon: "/icons/outfit2.png",
         },
-        { title: "Hand", text: "Weapon", icon: "/icons/hand.png" },
-        { title: "Eyes", text: "Blue", icon: "/icons/eyes.png" },
+        { title: "Hand (East)", text: "Katana", icon: "/icons/hand.png" },
+        { title: "Eyes", text: "Blue striking", icon: "/icons/eyes.png" },
         { title: "Ears", text: "None", icon: "/icons/ears.png" },
-        { title: "Mouth", text: "Happy", icon: "/icons/mouth.png" },
+        { title: "Mouth", text: "Calm", icon: "/icons/mouth.png" },
         {
           title: "Hair",
-          text: "Dreads Shaved",
+          text: "White Warrior Bob",
           icon: "/icons/hair.png",
         },
-        { title: "Neck", text: "Tattoo", icon: "/icons/neck.png" },
-        { title: "Face", text: "None", icon: "/icons/face.png" },
+        { title: "Neck", text: "Normal", icon: "/icons/neck.png" },
+        { title: "Skin tone", text: "Normal", icon: "/icons/face.png" },
       ],
       imageUrl: "/nft/astro-avatar.png",
     };

@@ -1,18 +1,18 @@
 <template>
   <div class="mb-[180px] lg:mb-[256px]">
-    <heading2 class="mb-7.5">{{
-      cardContent
-        ? `${cardContent.position}: ${cardContent.title}`
-        : "Card Reading"
-    }}</heading2>
-    <div class="opacity-60 mb-[100px]">
-      {{
-        cardContent
-          ? cardContent.description
-          : `Your reading was created by master astrologer Bill Hajdu. He's performed
+    <div class="mb-[100px]">
+      <heading2 class="mb-7.5">{{
+        cardContent ? cardContent.title : "Card Reading"
+      }}</heading2>
+      <div class="opacity-60">
+        {{
+          cardContent
+            ? ""
+            : `Your reading was created by master astrologer Bill Hajdu. He's performed
       thousands of card readings over the past 30 years. This reading contains
       three positions.`
-      }}
+        }}
+      </div>
     </div>
     <div v-if="!cardContent" class="flex justify-center flex-wrap mb-10">
       <div
@@ -60,7 +60,7 @@
         </p>
       </div>
     </div>
-    <div class="flex items-center justify-between w-[860px] max-w-full mx-auto">
+    <div class="flex items-center justify-between max-w-full mx-auto">
       <div
         class="
           inline-flex
@@ -69,7 +69,14 @@
           font-bold font-raleway
           cursor-pointer
         "
-        @click="showingCard > 0 ? (showingCard -= 1) : $emit('showOverview')"
+        @click="
+          showingCard > 0
+            ? (() => {
+                showingCard -= 1;
+                $emit('scrollTop');
+              })()
+            : $emit('showZodiac')
+        "
       >
         <svg
           width="16"
@@ -84,7 +91,7 @@
           />
         </svg>
         <span>{{
-          showingCard === 0 ? "PREVIOUS OVERVIEW" : "PREVIOUS CARD READING"
+          showingCard === 0 ? "ZODIAC READING" : "PREVIOUS CARD READING"
         }}</span>
       </div>
       <ButtonPrimary
@@ -115,38 +122,41 @@ export default {
       cards: [
         {
           position: "The East",
-          title: "Heaven",
+          title: "The Sword in the East (Personality)",
           description:
             "The East position represents yourself often times revealing your inner secrets.",
           content: [
-            "Don’t worry, no one’s dying. The Heaven card means both an end and a beginning. You’re going through a major life change. Are you thinking about leaving your current career to pursue a new one? Breaking up with a longtime partner? Whatever’s rocking your world, Heaven hints your new path will be filled with better things. Whew.",
-            "So you might be asking, why am I holding a Jordan on a stick? Once upon a time, there was a buddhist monk who lost one shoe. Instead of feeling bad about it, he took the one that’s left and hung it on a stick. Two shoes, one shoe, no shoe — whatever. Life’s still good. The change you’re going through might seem like a big loss. You’re probably clinging on to the past, and acting a bit possessive. Try hanging up your Jordans. Let them go. It’ll finally begin to feel like Heaven.",
+            "The Sword indicates you have a hard choice to make. So it could be you find yourself being indecisive of late.",
+            "Have you ever tried lifting a real sword? It’s freakin’ heavy. The Sword is here to remind you that the hardest part about making a decision is facing the fact that you have to make it.",
+            "So stop avoiding it. Lift that big ass sword. And once you’ve taken aim, that’s it, the hard part is over. Gravity will take care of the rest. Sure, there’s no turning back. As your sword falls, there might even be some collateral damage. But at least you’re no longer burdened.",
           ],
-          image: "/nft/Heaven.png",
+          image: "/nft/sword.png",
           reveal: false,
           id: 1,
         },
         {
           position: "The Center",
-          title: "Tortoise",
+          title: "Ducks are in your Center (Burning Question)",
           description:
             "Sentry card represents the central theme of your reading.",
           content: [
-            "The Tortoise represents patience. Success can’t be rushed. Like Karate, you have to earn your stripes before you can kick ass. Learning how not to rush things, or taking it slow and steady, seems to be what your life is all about now. Be like the tortoise. Build a hard shell, and don’t let anyone rattle you from your goal.",
-            "Also, did you know tortoises have great built-in GPS? They have a magnetic sense that can determine their location. The Tortoise is a reminder that direction is more important than speed. It might seem like things are moving slow, but the time you spend on foundation and strategy will pay off immensely. You’ll be glad you took it slow.",
+            "These ducks are a couple. They’re in it together for life. The question you’ve been asking yourself have to do with a partner, in love or at work. It seems like one of you want to commit. If you’ve met someone new, or have started a partnership in business, the Ducks suggest your duo will endure. Like the Samurai, this partnership is built on unwavering trust and loyalty.",
+            "Or, maybe these ducks are besties. A long-lost friend might have gotten in touch again, and you’re wondering whether you should renew the bond, or to keep a friendly distance. It’s your call. The Ducks seem to be quacking for a night out and drinks at the bar.",
           ],
-          image: "/nft/Tortoise.png",
+          image: "/nft/ducks.png",
           reveal: false,
           id: 2,
         },
         {
           position: "The North",
-          title: "Red Dragon",
+          title: "Water is in your North (Longterm Resolution)",
           description: "The north position represent your long-term future.",
           content: [
-            "The TortKACHAW! That’s the sound of luck striking. The Green Dragon is one of the three luckiest cards in the Mahjong deck — The Three Blessings. And it’s real friendly to startups. Having it in the North means whatever you start now will go incredibly well. Key word is “now”. Don’t procrastinate. Grab that dragon by the horns, and ride the lightning!",
+            "Water represents communication, short travel, and healing. What do all these things have in common? They all require back and forth. Good flow.",
+            "You got great flow, because Water loves being in the North, the upper position, from where it can rush down, powering everything on its way. If there are things that need communicating, you will be able to make them crystal clear, while also impressing others with your ability to keep the conversation moving productively.",
+            "A weekend trip will rejuvenate you. And if you’ve been in disagreement with someone, you might find yourself having an uncanny ability to listen and find common ground. Remember, there’s no nook or cranny that water can’t flow into and give life.",
           ],
-          image: "/nft/Red-Dragon.png",
+          image: "/nft/water.png",
           reveal: false,
           id: 3,
         },
@@ -167,6 +177,7 @@ export default {
     handleShowNextCard() {
       if (this.showingCard < 3) {
         this.showingCard += 1;
+        this.$emit("scrollTop");
       }
     },
   },

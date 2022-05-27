@@ -3,9 +3,16 @@ import { RouterLink } from "vue-router";
 import { useWallet } from "@/stores/wallet";
 import NFTOverview from "@/components/NFTOverview.vue";
 import NFTReading from "@/components/NFTReading.vue";
+import ZodiacReading from "@/components/ZodiacReading.vue";
 import VideoOrder from "@/components/VideoOrder.vue";
 export default {
-  components: { RouterLink, NFTOverview, NFTReading, VideoOrder },
+  components: {
+    RouterLink,
+    NFTOverview,
+    NFTReading,
+    VideoOrder,
+    ZodiacReading,
+  },
   setup() {
     const wallet = useWallet();
 
@@ -117,6 +124,26 @@ export default {
           <span>Overview</span>
         </div>
         <div
+          @click="currentTab = 'zodiac'"
+          class="
+            rounded-[20px]
+            border border-2 border-white border-opacity-[0]
+            py-1.5
+            px-3.5
+            group
+            mr-[26px]
+            my-3
+            cursor-pointer
+          "
+          :class="
+            currentTab === 'zodiac'
+              ? `!border-opacity-40 bg-white bg-opacity-10`
+              : 'opacity-40'
+          "
+        >
+          <span>Zodiac</span>
+        </div>
+        <div
           @click="currentTab = 'card-reading'"
           class="
             rounded-[20px]
@@ -160,13 +187,19 @@ export default {
       <div class="pt-12 w-full">
         <NFTOverview
           v-show="currentTab === 'overview'"
-          @card-reading="currentTab = 'card-reading'"
+          @show-zodiac="currentTab = 'zodiac'"
+        />
+        <ZodiacReading
+          v-show="currentTab === 'zodiac'"
+          @show-overview="currentTab = 'overview'"
+          @show-card-reading="currentTab = 'card-reading'"
         />
         <NFTReading
           v-show="currentTab === 'card-reading'"
-          @show-overview="currentTab = 'overview'"
+          @show-zodiac="currentTab = 'zodiac'"
+          @scroll-top="scrollToTop"
         />
-        <VideoOrder v-show="currentTab === 'order'" />
+        <VideoOrder v-show="currentTab === 'order'" @scroll-top="scrollToTop" />
       </div>
     </div>
   </div>
