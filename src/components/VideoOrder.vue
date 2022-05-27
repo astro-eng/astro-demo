@@ -6,7 +6,7 @@
           <heading2 class="mb-7.5">Get a Personalized Interpretation</heading2>
           <div class="opacity-50">
             Want to know more? We have three great options for you to get
-            personalized consultation from our master astrologer
+            personalized consultation from our master astrologer.
           </div>
         </div>
         <div class="mb-20">

@@ -50,7 +50,7 @@
       </div>
       <div class="flex-auto flex-shrink-1">
         <heading4 class="mb-7.5">{{ cardContent.title }}</heading4>
-        <div class="text-sm fold-bold font-raleway">
+        <div class="text-sm font-raleway">
           <p
             v-for="(text, index) in cardContent.content"
             :key="index"
@@ -59,6 +59,18 @@
             {{ text }}
           </p>
         </div>
+        <!-- <div v-if="!!cardContent.summary" class="mt-10">
+          <heading4 class="mb-2.5 uppercase">Summary</heading4>
+          <div class="text-sm font-bold font-raleway">
+            <p
+              v-for="(text, index) in cardContent.summary"
+              :key="index"
+              class="mb-5 max-w-full"
+            >
+              {{ text }}
+            </p>
+          </div>
+        </div> -->
       </div>
     </div>
     <div class="flex items-center justify-between max-w-full mx-auto">
@@ -166,6 +178,11 @@ export default {
           image: "/nft/water.png",
           reveal: false,
           id: 3,
+          summary: [
+            "You’re faced with tough decisions. You’ve been indecisive in your actions.",
+            "Your burning question has to do with a partner, in love or work. You and your partner are loyal.",
+            "Things will resolve with communication. You will achieve great flow between you and everyone around you.",
+          ],
         },
       ],
       showingCard: 0,
