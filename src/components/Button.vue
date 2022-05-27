@@ -13,7 +13,6 @@
       font-raleway font-bold
       rounded-md
     "
-    @click="$emit('click')"
   >
     <slot />
   </button>

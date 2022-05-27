@@ -9,13 +9,12 @@
       hover:cursor-pointer hover:text-white
       disabled:cursor-not-allowed
       disabled:opacity-40
-      disabled:pointer-events-none
+      disabled:hover:opacity-40
       text-black
       p-0.5
       bg-white bg-opacity-40
       group
     "
-    @click="$emit('click')"
   >
     <span
       class="

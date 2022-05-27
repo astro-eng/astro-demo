@@ -1,34 +1,41 @@
 <script>
 import { RouterLink } from "vue-router";
+import { useWallet } from "@/stores/wallet";
 import NFTOverview from "@/components/NFTOverview.vue";
 import NFTReading from "@/components/NFTReading.vue";
 import VideoOrder from "@/components/VideoOrder.vue";
-import { useWallet } from "@/stores/wallet";
 export default {
   components: { RouterLink, NFTOverview, NFTReading, VideoOrder },
-  data() {
-    return {
-      currentTab: "overview",
-    };
-  },
-  methods: {},
   setup() {
     const wallet = useWallet();
 
     return { wallet };
   },
-  computed: {
-    nftInfo() {
-      const { token } = this.$route.params;
 
-      if (!token) {
-        return null;
+  data() {
+    return {
+      currentTab: "overview",
+    };
+  },
+  methods: {
+    scrollToTop() {
+      this.$refs.container.scrollTop = 0;
+    },
+    async handleClosePopup() {
+      try {
+        await this.wallet.disconnect();
+      } catch (error) {
+        console.log("Disconnect wallet error:", error);
       }
 
-      const existObj = this.wallet.tokens.find((o) => o.mint === token);
-      console.log('🚀 ~ file: NFTDetailView.vue ~ line 29 ~ nftInfo ~ existObj', existObj)
-
-      return existObj;
+      this.$router.push("/");
+    },
+  },
+  computed: {},
+  watch: {
+    // whenever question changes, this function will run
+    currentTab() {
+      this.scrollToTop();
     },
   },
 };
@@ -48,10 +55,11 @@ export default {
       bg-blackAstro
       hide-vertical-scrollbar
     "
+    ref="container"
   >
-    <RouterLink
-      to="/my-nft"
-      class="fixed top-8 right-5 lg:top-14 lg:right-[60px] z-[999]"
+    <div
+      @click="handleClosePopup"
+      class="fixed top-8 right-5 lg:right-[60px] z-[999] cursor-pointer"
     >
       <svg
         width="40"
@@ -70,15 +78,14 @@ export default {
           fill="currentColor"
         />
       </svg>
-    </RouterLink>
+    </div>
     <div class="w-[1108px] max-w-full mx-auto px-6">
       <div
         class="
           sticky
           top-0
           left-0
-          pt-6
-          lg:pt-12
+          pt-8
           pb-4
           flex
           items-center
@@ -93,8 +100,7 @@ export default {
           @click="currentTab = 'overview'"
           class="
             rounded-[20px]
-            border border-2 border-white border-opacity-40
-            bg-white bg-opacity-10
+            border border-2 border-white border-opacity-[0]
             py-1.5
             px-3.5
             group
@@ -102,35 +108,65 @@ export default {
             my-3
             cursor-pointer
           "
+          :class="
+            currentTab === 'overview'
+              ? `!border-opacity-40 bg-white bg-opacity-10`
+              : 'opacity-40'
+          "
         >
-          <span
-            class="opacity-40 group-hover:opacity-100"
-            :class="currentTab === 'overview' ? 'opacity-100' : ''"
-            >Overview</span
-          >
+          <span>Overview</span>
         </div>
         <div
           @click="currentTab = 'card-reading'"
-          class="hover:opacity-100 mr-6 mr-8 my-3 cursor-pointer"
-          :class="currentTab === 'card-reading' ? 'opacity-100' : 'opacity-40'"
+          class="
+            rounded-[20px]
+            border border-2 border-white border-opacity-[0]
+            py-1.5
+            px-3.5
+            group
+            mr-[26px]
+            my-3
+            cursor-pointer
+          "
+          :class="
+            currentTab === 'card-reading'
+              ? `!border-opacity-40 bg-white bg-opacity-10`
+              : 'opacity-40'
+          "
         >
           <span>Card Reading</span>
         </div>
         <div
           @click="currentTab = 'order'"
-          class="hover:opacity-100 mr-6 mr-8 my-3 cursor-pointer"
-          :class="currentTab === 'order' ? 'opacity-100' : 'opacity-40'"
+          class="
+            rounded-[20px]
+            border border-2 border-white border-opacity-[0]
+            py-1.5
+            px-3.5
+            group
+            mr-[26px]
+            my-3
+            cursor-pointer
+          "
+          :class="
+            currentTab === 'order'
+              ? `!border-opacity-40 bg-white bg-opacity-10`
+              : 'opacity-40'
+          "
         >
-          <span>Personalize Consultation</span>
+          <span>Meet Your Astrologer</span>
         </div>
       </div>
-      <div class="pt-14 lg:pt-20 w-full">
-        <div v-if="!!nftInfo">
-          <NFTOverview v-if="currentTab === 'overview'" :data="nftInfo.parsedMetaData" />
-          <NFTReading v-if="currentTab === 'card-reading'" />
-          <VideoOrder v-if="currentTab === 'order'" />
-        </div>
-        <div v-else>No data found.</div>
+      <div class="pt-12 w-full">
+        <NFTOverview
+          v-show="currentTab === 'overview'"
+          @card-reading="currentTab = 'card-reading'"
+        />
+        <NFTReading
+          v-show="currentTab === 'card-reading'"
+          @show-overview="currentTab = 'overview'"
+        />
+        <VideoOrder v-show="currentTab === 'order'" />
       </div>
     </div>
   </div>

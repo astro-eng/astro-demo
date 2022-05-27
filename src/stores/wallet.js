@@ -28,10 +28,11 @@ export const useWallet = defineStore('wallet', {
 
       this.provider.on('connect', (publicKey) => {
         if (!this.publicKey) {
-          this.publicKey = publicKey;
+          this.publicKey = publicKey.toString();
           this.connected = true;
           this.loadingNFT = true;
-          this.getTokens();
+          // DO THIS LATER
+          // this.getTokens();
         }
         console.log('Connected wallet!');
       });
@@ -47,7 +48,7 @@ export const useWallet = defineStore('wallet', {
 
         if (publicKey) {
           console.log(
-            '[accountChanged] Switched account to ' + publicKey?.toBase58()
+            '[accountChanged] Switched account to ' + publicKey?.toString()
           );
         } else {
           console.log('[accountChanged] Switched unknown account');
@@ -100,6 +101,14 @@ export const useWallet = defineStore('wallet', {
       } catch (err) {
         console.warn('[error] getTokens: ' + JSON.stringify(err));
       }
+    },
+    async disconnect() {
+      await this.provider?.request({ method: 'disconnect' });
+      this.publicKey = null;
+      this.connected = false;
+      this.tokens = [];
+      this.loadingNFT = false;
+      return true;
     },
   },
 });

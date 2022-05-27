@@ -3,82 +3,11 @@
     <div class="container mx-auto p-[10px] md:p-[0px]">
       <template v-if="!isSubmitted">
         <div class="mb-20">
-          <OrderOptions @select="(o) => (orderType = o)" />
-        </div>
-        <Heading1 class="mt-[100px]">Ask a question</Heading1>
-        <Heading4 class="mt-[40px]">Select a question</Heading4>
-        <div class="flex flex-wrap mt-[10px]">
-          <div
-            v-for="(item, index) in suggestQuestions"
-            :key="index"
-            class="card-hover"
-            :class="selected == index ? 'box' : 'question'"
-            @click="selected = index"
-          >
-            {{ item }}
-          </div>
-        </div>
-        <div class="mt-[40px]">
-          <Heading4>Or enter your own question</Heading4>
-          <textarea
-            v-model="question"
-            placeholder=""
-            class="
-              border-none
-              !outline-none
-              bg-transparent
-              basis-[260px]
-              leading-[28px]
-              md:leading-[22px]
-              pl-4
-              py-2.5
-              input
-              mt-[10px]
-              md:w-[500px]
-              w-full
-            "
-            @keyup.enter="sendMail"
-          >
-          </textarea>
-        </div>
-        <div class="des-1 mt-[50px]">
-          <div>
-            We can only answer <span class="font-bold">one question</span>.
-            Please double check and make sure this is what you want to ask...
-          </div>
-          <div class="italic">“What does my future look like?”</div>
-          <div class="font-bold mt-[15px]">
-            Your personalized 5 minute video will be delivered to your inbox
-            within 24 hours.
-          </div>
-        </div>
-        <div class="mt-[50px]">
-          <div class="text-tran">Recorded Video • 5 minutes • $18.88</div>
-          <ButtonPrimary class="mt-[20px]" @click="handleSubmit">
-            Order my personalized video
-          </ButtonPrimary>
-        </div>
-        <Heading1 class="mt-[150px]">Example</Heading1>
-        <div class="grid grid-cols-1 md:grid-cols-2 mt-[50px] mb-[200px]">
-          <div class="video-demo mr-[0px] md:mr-[10px] cursor-pointer">
-            <img src="/nft/video-banner-1.png " class="bg-cover" alt="" />
-          </div>
-          <div
-            class="
-              video-demo
-              ml-[0px]
-              md:ml-[10px]
-              mt-[10px]
-              md:mt-[0px]
-              cursor-pointer
-            "
-          >
-            <img src="/nft/video-banner-2.png " class="bg-cover" alt="" />
-          </div>
+          <OrderOptions @select="isSubmitted = true" />
         </div>
       </template>
       <template v-else>
-        <div class="flex flex-col justify-items-center items-center mb-30">
+        <div class="flex flex-col justify-items-center items-center mb-30 pt-10">
           <h1 class="yay">Yay!!!</h1>
           <Heading2 class="mt-[40px]">Your order has been confirmed</Heading2>
           <div class="icon-done flex justify-center items-center">

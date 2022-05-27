@@ -31,3 +31,16 @@ body {
 .hide-vertical-scrollbar::-webkit-scrollbar {
   width: 0px;
 }
+
+.text-gradient {
+  background: linear-gradient(
+    270deg,
+    #6f1fff -1.92%,
+    #ff00e4 47.83%,
+    #f73a3c 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}

@@ -14,8 +14,7 @@
       pl-[50px]
       pr-6
       pb-5
-      hidden
-      lg:flex
+      flex
     "
   >
     <div class="basis-[240px] flex-shrink-0">
