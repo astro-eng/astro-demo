@@ -1,17 +1,11 @@
 <template>
   <div class="mb-[180px] lg:mb-[256px]">
     <div class="mb-[100px]">
-      <heading2 class="mb-7.5">{{
-        cardContent ? cardContent.title : "Card Reading"
-      }}</heading2>
+      <heading2 class="mb-7.5">Card Reading</heading2>
       <div class="opacity-60">
-        {{
-          cardContent
-            ? ""
-            : `Your reading was created by master astrologer Bill Hajdu. He's performed
-      thousands of card readings over the past 30 years. This reading contains
-      three positions.`
-        }}
+        Your reading was created by master astrologer Bill Hajdu. He's performed
+        thousands of card readings over the past 30 years. This reading contains
+        three positions.
       </div>
     </div>
     <div v-if="!cardContent" class="flex justify-center flex-wrap mb-10">
@@ -51,13 +45,16 @@
         <img :src="cardContent.image" width="310" class="w-full" />
       </div>
       <div class="flex-auto flex-shrink-1">
-        <p
-          v-for="(text, index) in cardContent.content"
-          :key="index"
-          class="mb-5 text-base font-bold font-raleway max-w-full"
-        >
-          {{ text }}
-        </p>
+        <heading4 class="mb-7.5">{{ cardContent.title }}</heading4>
+        <div class="text-sm fold-bold font-raleway">
+          <p
+            v-for="(text, index) in cardContent.content"
+            :key="index"
+            class="mb-5 max-w-full"
+          >
+            {{ text }}
+          </p>
+        </div>
       </div>
     </div>
     <div class="flex items-center justify-between max-w-full mx-auto">
